@@ -1,0 +1,9 @@
+pre-commit==2.9.3
+django==3.2.5
+django-crispy-forms==1.9.2
+gunicorn==20.1.0
+Pillow==8.3.2
+phonenumbers==8.12.31
+whitenoise==5.2.0
+djangorestframework==3.12.4
+psycopg2==2.8.6

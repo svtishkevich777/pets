@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Shop Homepage</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link href="css/shop-homepage.css" rel="stylesheet">
+  <!-- Navigation -->
+</head>
+{% block content %}
+<h3 class="text-center mt-5 mb-5">Ваш заказ</h3>
+      Фамилия: {{ cd.last_name }}<br>
+      Имя: {{ cd.first_name }}<br>
+      Ваш email: {{ cd.email }}<br>
+      Ваш номер тел.: {{ cd.phone }}<br>
+      Город: {{ cd.city }}, ул.{{ cd.address }}<br>
+      Дата и время доставки: {{ cd.order_date }}<br>
+      <table border="1">
+      <tr>
+          <th scope="col">Наименование</th>
+          <th scope="col">Цена</th>
+          <th scope="col">Кол-во</th>
+          <th scope="col">Общая цена</th>
+      </tr>
+    {% for item in products %}
+        <tr>
+          <th scope="row">{{ item.name }}</th>
+          <td>{{ item.price }} руб.</td>
+          <td>{{ item.total_amount }}</td>
+            <td>{{ item.total_price|floatformat:2 }} руб.</td>
+        </tr>
+        {% endfor %}
+            <tr>
+              <td colspan="1"></td>
+              <td>Итого:</td>
+              <td>{{ all_data.all_prod }}</td>
+              <td><strong>{{ all_data.all_price|floatformat:2 }} руб.</strong></td>
+            </tr>
+          </table>
+    {% endblock content %}
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
+    </div>
+  </footer>
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

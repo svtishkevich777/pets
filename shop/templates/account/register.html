@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+{% endif %}
+    <h1>Create an account</h1>
+    <p>Please, sign up using the following form:</p>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ user_form|crispy}}
+        <p><input id="submit" type="submit" value="Create my account"></p>
+    </form>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="text-center mt-5 mb-5">Ваша корзина {% if not products %}пуста{% endif %}</h3>
+{% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+{% endif %}
+{% if products %}
+<table class="table">
+<thead>
+    <tr>
+      <th scope="col">Наименование</th>
+      <th scope="col">Изображение</th>
+      <th scope="col">Цена</th>
+      <th scope="col">Кол-во</th>
+        <th scope="col">Общая цена</th>
+      <th scope="col">Действие</th>
+    </tr>
+</thead>
+<tbody>
+    {% for item in products %}
+    {% csrf_token %}
+        <tr>
+          <th scope="row">{{ item.name }}</th>
+          <td class="w-25"><img src="{{ item.image.url }}" class="img-fluid"></td>
+          <td>{{ item.price }} руб.</td>
+          <td>
+            <form action="{% url 'new' pk=item.id %}" method="POST">
+              {% csrf_token %}
+              <input type="number" class="form-control" name="prod_num" style="width: 70px;" min="1" value="{{ item.total_amount }}">
+              <br>
+<!--              <input type="hidden" name="prod_id" value="{{ item.id }}">-->
+              <input type="submit" class="btn btn-primary" value="Изменить кол-во">
+            </form>
+
+          </td>
+          <td>{{ item.total_price|floatformat:2 }} руб.</td>
+          <td>
+              <form action="{% url 'delete' pk=item.id %}" method="POST">{% csrf_token %}
+              <button class="btn btn-danger">Удалить из корзины</button></form>
+          </td>
+        </tr>
+
+        {% endfor %}
+        <tr>
+          <td colspan="2"></td>
+          <td>Итого:</td>
+          <td>{{ all_data.all_prod }}</td>
+          <td><strong>{{ all_data.all_price|floatformat:2 }} руб.</strong></td>
+          <td><a href="{% url 'order' %}"><button class="btn btn-primary">Перейти к оформлению</button></a></td>
+          <td>
+            <form action="{% url 'delete_full_cart' %}" method="POST">{% csrf_token %}
+            <button class="btn btn-danger">Очистить корзину</button></form>
+          </td>
+        </tr>
+
+</tbody>
+</table>
+{% endif %}
+{% endblock content %}
