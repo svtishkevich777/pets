@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="icon" href="data:;base64,=">
+    <meta charset="UTF-8">
+    <title>Update task</title>
+</head>
+<body align="center">
+    <form action="{{ url_for('update', pk=id) }}" method="post">
+    <a href="http://127.0.0.1:5000/">
+        <button>
+            <h1>Task iditing</h1>
+        </button>
+    </a>
+    <p align="center"><input type="text" name="task" value="{{obj.task}}"></p>
+    <p align="center"><input type="submit"></p>
+    </form>
+</body>
+</html>

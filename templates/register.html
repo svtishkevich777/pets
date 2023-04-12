@@ -1,0 +1,27 @@
+{% extends "user_start.html"%}
+
+{% block title %}register{% endblock%}
+
+{% block body%}
+<head>
+    <title>Register</title>
+</head>
+
+<form action="{{ url_for('register')}}" method="post">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.name not in ['csrf_token', 'submit']%}
+    <p>{{ field.label() }}</p>
+    {% if field.errors%}
+    {{ field(class='invalid') }}
+    <span>
+        {% for data in field.errors%}
+        {{ data }}
+        {% endfor%}
+    </span>
+    {% else%}
+    {{ field()}}
+    {% endif%}
+    {% endfor%}
+    <p>{{ form.submit()}}</p>
+</form>
+{% endblock%}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="icon" href="data:;base64,=">
+    <meta charset="UTF-8">
+    <title>Update status</title>
+</head>
+<body>
+    <form action="{{url_for('update_status', pk=id, status=status)}}" method="post">
+                <p align="center">
+                    <a href="http://127.0.0.1:5000/">
+                        <button>
+                               <h1>Home page</h1>
+                        </button>
+
+                    </a>
+                </p>
+            <h3>
+                <table align="center">
+                    <tr>
+                        <td align="center"><font size="4" color="red" face="Arial">ID</font></td>
+                        <td align="center"><font size="4" color="red" face="Arial">Status</font></td>
+                    </tr>
+                    <tr>
+                        <td align="left">1</td>
+                        <td><input type="radio" name="status" value="Urgent, important">Urgent, important</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="radio" name="status" value="Urgent, it not matter">Urgent, it not matter</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="radio" name="status" value="Not urgent, important">Not urgent, important</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="radio" name="status" value="Not important, not urgent" checked>Not important, not urgent</td>
+                        <br>
+                    </tr>
+                </table>
+            </h3>
+        <p align="center">
+            <input type="submit" value="Update old status">
+        </p>
+    </form>
+</body>
+</html>

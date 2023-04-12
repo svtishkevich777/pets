@@ -1,0 +1,106 @@
+body, html {
+  height: 100%;
+
+  /* The image used */
+  background-image: url("shes.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: top center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+table.pantone {width: 100%; border-collapse: collapse;}
+table.pantone td {padding: 0.8rem 0.8rem; color: #ffffff; font-weight: bold;}
+
+@media screen and (max-width: 600px)
+{ table {width:100%;} head {display: none;}
+tr:nth-of-type(2n) {background-color: inherit;}
+tr td:first-child {background: #f0f0f0; font-weight:bold;font-size:1.3em;}
+tr td:first-child {font-weight:bold;font-size:1.3em;}
+table.pantone td {display: block; text-align:center;}
+table.pantone td:before { content: attr(data-tr);
+display: block; text-align:center; } }
+
+}
+h2 {
+    color: red;
+}
+p {
+    color: red;
+}
+.flash {padding: 10px;}
+.flash.new_task {
+         border: 1px solid #21DB56;
+         background: #AEFFC5;
+}
+.flash.task_delete {
+         border: 1px solid #FF4343;
+         background: #FF9C9C;
+input:invalid {
+  border: 2px dashed red;
+}
+}
+input:invalid:required {
+  background-image: linear-gradient(to right, pink, lightgreen);
+}
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.dropdown {
+border: 1px double black; /* Параметры границы */
+background: #fc10; /* Цвет фона */
+padding: 10px; /* Поля вокруг текста */
+}

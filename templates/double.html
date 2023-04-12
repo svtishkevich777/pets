@@ -1,0 +1,78 @@
+{% extends "user_start.html" %}
+{% block title%}todo2{% endblock %}
+
+{% block body%}
+<head>
+    <title>Filter</title>
+</head>
+<h1>TodoBro</h1>
+    {% for cat, msg in get_flashed_messages(True) %}
+    <div class="flash {{cat}}">{{msg}}</div>
+    {% endfor %}
+    <form action="{{url_for('table_todo', status=status)}}" method="post">
+            <h2>Add task:</h2>
+            <p><input type="text" name="task" size="50"/></p>
+            <h3><li># Determine the importance</li>
+            <li>1 <input type="radio" name="status" value="Urgent, important">Urgent, important</li>
+            <li>2 <input type="radio" name="status" value="Urgent, it not matter">Urgent, it not matter</li>
+            <li>3 <input type="radio" name="status" value="Not urgent, important">Not urgent, important</li>
+            <li>4 <input type="radio" name="status" value="Not important, not urgent" checked>Not important, not urgent</li>
+            <br>
+            <input type="submit" value="   Save  Task    ">
+            </h3>
+    </form>
+        <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Filter</button>
+              <div id="myDropdown" class="dropdown-content">
+                    <a href="{{ url_for('table_filter', status='Urgent, important')}}"><font color="red">Urgent, important</font></a>
+                    <a href="{{ url_for('table_filter', status='Urgent, it not matter')}}"><font color="Orange">Urgent, it not matter</font></a>
+                    <a href="{{ url_for('table_filter', status='Not urgent, important')}}"><font color="green">Not urgent, important</font></a>
+                    <a href="{{ url_for('table_filter', status='Not important, not urgent')}}"><font color="grey">Not important, not urgent</font></a>
+                    <a href="{{ url_for('table_todo')}}">All tasks</a>
+              </div>
+        </div>
+<br>
+    <table class="pantone" border=2>
+    <tr align="center">
+        <td width="220px"><font size="4" color="red" face="Arial">Status</font></td>
+        <td width="40px"><font size="4" color="red" face="Arial">NEW</font></td>
+        <td><font size="4" color="red" face="Arial">Tasks list</font></td>
+        <td width="150px"><font size="4" color="red" face="Arial">Date of creation</font></td>
+        <td width="83px"><font size="4" color="red" face="Arial">Done</font></td>
+        <td width="40px"><font size="4" color="red" face="Arial">UPD.</font></td>
+        <td width="40px"><font size="4" color="red" face="Arial">DEL.</font></td>
+
+    </tr>
+        {% for data in datas %}
+        <tr>
+            {% if data.status=='Urgent, important' %}
+            <td align="center"><font size="4" color="red" face="Arial">{{data.status}}</font></td>
+            {% elif data.status=='Urgent, it not matter' %}
+            <td align="center"><font size="4" color="Orange" face="Arial">{{data.status}}</font></td>
+            {% elif data.status=='Not urgent, important' %}
+            <td align="center"><font size="4" color="green" face="Arial">{{data.status}}</font></td>
+            {% else %}
+            <td align="center"><font size="4" color="grey" face="Arial">{{data.status}}</font></td>
+            {%endif%}
+
+            <td align="center"><a href="{{ url_for('update_status', pk=data.id) }}" ><font color="red">New status</font></a></td>
+
+
+            <td align="center"><font color="Black">{{ data.task }}</font></td>
+
+            <td align="center"><font color="Black">{{ data.date_created.strftime("%d.%m.%Y %H:%M") }}</font></td>
+
+            {% if data.done==False %}
+            <td align="center"><form action="{{ url_for('done', pk=data.id) }}" method="post">
+                <button>NOT DONE</button></form></td>
+             {% else%}
+            <td align="center"><form action="{{ url_for('done', pk=data.id) }}" method="post">
+                <button><font color="green">DONE</font></button></form></td>
+            {% endif%}
+
+            <td align="center"><a href="{{ url_for('update', pk=data.id) }}" ><font color="red">Upd.</font></a></td>
+            <td align="center"><a href="{{ url_for('delete', pk=data.id) }}" ><font color="red">Del.</font></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
