@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="icon" href="data:;base64,=">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+</head>
+<body>
+<h2>Shorter URLs</h2>
+    {% for cat, msg in get_flashed_messages(True) %}
+    <div class="flash {{cat}}">{{msg}}</div>
+    {% endfor %}
+    <form action="{{url_for('new_url')}}" method="post">
+    <p>Input URL :</p>
+    <p><input type="URL" name="long_url" required></p>
+        <p>Input short new URL:</p>
+    <p><input type="text" name="short_url"></p>
+    <p><input type="submit" value="shorts"></p>
+    </form>
+</body>
+<br>
+<table class="pantone" border=2>
+    <tr>
+        <td><font size="4" color="red" face="Arial">ID</font></td>
+        <td><font size="4" color="red" face="Arial"><marquee behavior="alternate" direction="right">Long URL</marquee></font></td>
+        <td><font size="4" color="red" face="Arial">Short URL</font></td>
+        <td><font size="4" color="red" face="Arial">Date of creation</font></td>
+        <td><font size="4" color="red" face="Arial">Visits</font></td>
+        <td><font size="4" color="red" face="Arial">Delete</font></td>
+
+    </tr>
+    {% for data in datas %}
+    <tr>
+        <td><font color="red">{{ data.id }}</font></td>
+        <td><font color="Black">{{ data.long_url|trimmer }}</font></td>
+        <td><a href="{{host}}{{ data.short_url }}"><font color="DarkRed">{{host}}{{ data.short_url }}</font></a></td>
+        <td><font color="Black">{{ data.date_created }}</font></td>
+        <td><font color="Black">{{ data.visits }}</font></td>
+        <td><a href="{{ url_for('delete', id=data.id) }}" ><font color="red">Delete</font></a></td>
+    </tr>
+    {% endfor %}
+</table>
+</html>

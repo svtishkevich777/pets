@@ -1,0 +1,60 @@
+body, html {
+  height: 100%;
+
+  /* The image used */
+  background-image: url("kb.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: top center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+table.pantone {width: 100%; border-collapse: collapse;}
+table.pantone td {padding: 0.8rem 0.8rem; color: #ffffff; font-weight: bold;}
+
+@media screen and (max-width: 600px)
+{ table {width:100%;} head {display: none;}
+tr:nth-of-type(2n) {background-color: inherit;}
+tr td:first-child {background: #f0f0f0; font-weight:bold;font-size:1.3em;}
+tr td:first-child {font-weight:bold;font-size:1.3em;}
+table.pantone td {display: block; text-align:center;}
+table.pantone td:before { content: attr(data-tr);
+display: block; text-align:center; } }
+
+}
+h2 {
+    color: red;
+}
+p {
+    color: red;
+}
+.flash {padding: 10px;}
+.flash.created {
+         border: 1px solid #21DB56;
+         background: #AEFFC5;
+}
+.flash.generated {
+         border: 1px solid #21DB56;
+         background: #AEFFC5
+}
+.flash.already {
+         border: 1px solid #FF4343;
+         background: #FF9C9C;
+}
+.flash.error {
+         border: 1px solid #FF4343;
+         background: #FF9C9C;
+input:invalid {
+  border: 2px dashed red;
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, pink, lightgreen);
+}
+
+input:valid {
+  border: 2px solid black;
+}

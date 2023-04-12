@@ -1,0 +1,4 @@
+pre-commit
+flask
+flask_sqlalchemy
+gunicorn
