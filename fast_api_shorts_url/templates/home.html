@@ -1,0 +1,44 @@
+{% include 'layout.html' %}
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            Your Shorts!
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">List of your Shorts!</h5>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Origin URL</th>
+                    <th scope="col">Short URL</th>
+                    <th scope="col">Visits</th>
+                    <th scope="col">Delete</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    {% for short in shorts %}
+                    <tr>
+
+                        <td >{{loop.index}}</td>
+                        <td class="cuttedText">{{short.origin_url}}</td>
+                        <td class="shortText"><a href="{{host}}{{ short.short_url }}">{{ short.short_url }}</a></td>
+                        <td>{{short.visits}}</td>
+                        <td>
+                            <form action="{{host}}delete/{{short.id}}">
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+            <a href="add-short" class="btn btn-primary">Add a new Short!</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% include 'layout.html' %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Make a new Short
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% if messages %}
+                      <div class="alert alert-danger" role="alert">
+                        <strong>{{ messages }}</strong>
+                        </button>
+                      </div>
+                {% endif %}
+                <div class="form-group">
+                    <label>Origin URl</label>
+                    <input type="url" class="form-control" name="origin_url" value="{{origin_url}}">
+                </div>
+                <div class="form-group">
+                    <label>Short URl</label>
+                    <input class="form-control" name="short_url" >
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add new short</button>
+            </form>
+        </div>
+    </div>
+</div>
